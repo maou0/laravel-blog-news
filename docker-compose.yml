@@ -1,0 +1,52 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:1.23.1-alpine
+    container_name: laravel_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+        - app
+    networks:
+      - laravel-network
+
+  app:
+      build:
+          context: ./
+          dockerfile: ./_docker/app/Dockerfile
+      container_name: laravel
+      restart: unless-stopped
+      working_dir: /var/www/
+      volumes:
+          - ./:/var/www
+      depends_on:
+          - db
+      networks:
+          - laravel-network
+
+  db:
+    image: mysql:8.0.30
+    container_name: laravel-db
+    restart: always
+    ports:
+        - "3307:3306"
+    command:
+      - '--default-authentication-plugin=mysql_native_password'
+      - '--character-set-server=utf8'
+      - '--collation-server=utf8_unicode_ci'
+    environment:
+        MYSQL_DATABASE: laravel
+        MYSQL_ROOT_PASSWORD: root
+    volumes:
+        - ./tmp/db:/var/lib/mysql
+    networks:
+        - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
