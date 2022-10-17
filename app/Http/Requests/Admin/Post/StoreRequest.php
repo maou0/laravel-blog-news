@@ -25,7 +25,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'max:255', Rule::unique('categories')->withoutTrashed()]
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:10500',
+            'preview_image' => 'required|mimes:jpeg,png,jpg,gif|max:10240',
+            'main_image' => 'required|mimes:jpeg,png,jpg,gif|max:10240',
+            'category_id' => 'required|integer|exists:categories,id',
+            'tag_ids' => 'nullable|array',
+            'tag_ids.*' => 'nullable|integer|exists:tags,id'
         ];
     }
 }
