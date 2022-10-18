@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" name="title" value="{{ $category->title }}">
                                 @error('title')
-                                    <div class="text-danger">Это поле не должно быть пустым, либо категория уже существует</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <input type="submit" class="btn btn-block btn-primary w-25" value="Обновить">

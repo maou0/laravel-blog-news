@@ -39,7 +39,7 @@
                                         >
                                     </label>
                                     @error('title')
-                                    <div class="text-danger">Это поле не должно быть пустым</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -48,7 +48,7 @@
                                     </textarea>
                                     <div>
                                         @error('content')
-                                        <div class="text-danger">Это поле не должно быть пустым</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -68,9 +68,7 @@
                                     </div>
                                     <div>
                                         @error('preview_image')
-                                        <div class="text-danger">Наличие изображения обязательно! Формат jpeg, png, jpg,
-                                            gif. Максимальный размер 10 мб.
-                                        </div>
+                                        <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -89,9 +87,7 @@
                                         </div>
                                     </div>
                                     @error('preview_image')
-                                    <div class="text-danger">Наличие изображения обязательно! Формат jpeg, png, jpg,
-                                        gif. Максимальный размер 10 мб.
-                                    </div>
+                                    <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -106,7 +102,7 @@
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                <div class="text-danger">Необходимо выбрать категорию</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-50" data-select2-id="29">
@@ -121,7 +117,7 @@
                                     @endforeach
                                 </select>
                                 @error('tag_ids[]')
-                                <div class="text-danger">Необходимо хотя бы один тег</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">

@@ -25,7 +25,16 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'max:255', Rule::unique('categories')->withoutTrashed()]
+            'title' => ['required', 'string', 'max:255', Rule::unique('categories')->withoutTrashed()],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Данное поле необходимо для заполнения',
+            'title.max' => 'Максимальная длина поля 255 символов',
+            'title.unique' => 'Данная категория уже существует',
         ];
     }
 }

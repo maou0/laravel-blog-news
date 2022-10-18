@@ -35,7 +35,7 @@
                                     <input type="text" class="form-control" name="title" value="{{ $tag->title }}">
                                 </label>
                                 @error('title')
-                                    <div class="text-danger">Это поле не должно быть пустым, либо тег уже существует</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <input type="submit" class="btn btn-block btn-primary w-25" value="Обновить">
