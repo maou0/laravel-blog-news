@@ -10,6 +10,26 @@
                  with font-awesome or any other icon font library -->
             <div class="row">
                 <li class="nav-item">
+                    <a href="{{ route('admin.main.index') }}" class="nav-link">
+                        <i class="fa fa-solid fa-house-user mr-2"></i>
+                        <p>
+                            Главная
+                        </p>
+                    </a>
+                </li>
+            </div>
+            <div class="row">
+                <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}" class="nav-link">
+                        <i class="fa fa-solid fa-user mr-2"></i>
+                        <p>
+                            Пользователи
+                        </p>
+                    </a>
+                </li>
+            </div>
+            <div class="row">
+                <li class="nav-item">
                     <a href="{{ route('admin.post.index') }}" class="nav-link">
                         <i class="fa fa-solid fa-newspaper mr-2"></i>
                         <p>

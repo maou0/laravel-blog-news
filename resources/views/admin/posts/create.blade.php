@@ -79,7 +79,7 @@
                                             <span class="input-group-text">Загрузить</span>
                                         </div>
                                     </div>
-                                    @error('preview_image')
+                                    @error('main_image')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -100,7 +100,9 @@
                             </div>
                             <div class="form-group w-50" data-select2-id="29">
                                 <label>Теги</label>
-                                <select class="select2 select2-hidden-accessible" name="tag_ids[]" multiple="" data-placeholder="Выберите теги" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                <select class="select2 select2-hidden-accessible" name="tag_ids[]" multiple=""
+                                        data-placeholder="Выберите теги" style="width: 100%;" data-select2-id="7"
+                                        tabindex="-1" aria-hidden="true">
                                     @foreach ($tags as $tag)
                                         <option value="{{ $tag->id }}"
                                             {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected' : '' }}
