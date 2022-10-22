@@ -15,10 +15,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Main'], function () {
-    Route::get('/', 'IndexController');
+    Route::get('/', 'IndexController')->name('main.index');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+    Route::get('/', 'IndexController')->name('post.index');
+    Route::get('/{post}', 'ShowController')->name('post.show');
+
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+        Route::post('/', 'StoreController')->name('post.comment.store');
+    });
+    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
+        Route::post('/', 'StoreController')->name('post.like.store');
+    });
+});
+
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
+    Route::group(['namespace' => 'Main', 'prefix' => 'main'], function () {
+        Route::get('/', 'IndexController')->name('personal.main.index');
+    });
+    Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
+        Route::get('/', 'IndexController')->name('personal.liked.index');
+        Route::delete('/{post}', 'DeleteController')->name('personal.liked.delete');
+    });
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
+        Route::get('/', 'IndexController')->name('personal.comment.index');
+        Route::get('/{comment}/edit', 'EditController')->name('personal.comment.edit');
+        Route::patch('/{comment}', 'UpdateController')->name('personal.comment.update');
+        Route::delete('/{comment}', 'DeleteController')->name('personal.comment.delete');
+    });
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin.main.index');
     });
