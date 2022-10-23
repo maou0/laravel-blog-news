@@ -18,6 +18,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const ROLE_READER = 1;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -71,5 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->HasMany(Comment::class);
+    }
+
+    public function posts()
+    {
+        return $this->HasMany(Post::class);
     }
 }

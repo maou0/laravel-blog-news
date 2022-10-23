@@ -4,7 +4,7 @@
     <main class="blog-post">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">{{ $post->title }}</h1>
-            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">Автор: AUTHOR
+            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">Автор: {{ $post->user->name}}
                 • {{ $data->translatedFormat('F') }} {{ $data->day }}, {{ $data->year }} • {{ $data->format('H:i') }} •
                 Комментарии: {{ $post->comments->count() }}</p>
             <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
@@ -38,7 +38,7 @@
                 </div>
             </section>
             <div class="row">
-                <div class="col-lg-9 mx-auto">
+                <div class="col-lg-9 mx-auto mb-5">
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Схожие посты</h2>
                         <div class="row">
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12" data-aos="fade-up">
+                                <div class="col-12 mb-5" data-aos="fade-up">
                                     <input type="submit" value="Отправить" class="btn btn-warning">
                                 </div>
                             </div>

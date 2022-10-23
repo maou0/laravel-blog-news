@@ -6,6 +6,7 @@
             <h1 class="edica-page-title" data-aos="fade-up">Блог</h1>
             <section class="featured-posts-section">
                 <div class="row">
+                    @if($posts->isNotEmpty())
                     @foreach($posts as $post)
                     <div class="col-md-4 fetured-post blog-post" data-aos="fade-up">
                         <div class="blog-post-thumbnail-wrapper">
@@ -18,10 +19,15 @@
                         </a>
                     </div>
                     @endforeach
+                    @else
+                        <img src="{{ asset('assets/images/no_posts_image.png') }}" class="img-fluid" alt="Responsive image">
+                    @endif
                 </div>
+                @if($posts->isNotEmpty())
                 <div class="row mb-5 mx-auto" style="margin-top: -80px;">
                     {{ $posts->links() }}
                 </div>
+                @endif
             </section>
             <div class="row">
                 <div class="col-md-8">
@@ -41,7 +47,8 @@
                         </div>
                     </section>
                 </div>
-                <div class="col-md-4 sidebar" data-aos="fade-left">
+                @if($likedPosts->isNotEmpty())
+                <div class="col-md-4 sidebar mb-5" data-aos="fade-left">
                     <div class="widget widget-post-list">
                         <h5 class="widget-title">Популярные посты</h5>
                         <ul class="post-list">
@@ -58,6 +65,7 @@
                         </ul>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
 

@@ -41,6 +41,11 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
+            <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link text-primary" href="{{ route('main.index') }}"><strong>Обратно к блогу</strong> <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST">
