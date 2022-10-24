@@ -1,3 +1,4 @@
+<pre>
 Простенький блог с добавлением постов и админ панелью на Ларавел (с laravel mix).
 Чтобы запустить приложение, делаем следующее:
 1) Клонируем репозиторий.
@@ -14,3 +15,4 @@ $php artisan key:generate
 $php artisan migrate
 $php artisan db:seed
 $php artisan storage:link
+</pre>
