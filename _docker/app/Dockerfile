@@ -9,13 +9,17 @@ RUN apt-get update && apt-get install -y \
       libpng-dev \
       libzip-dev \
       zip unzip \
+      libgd3 \
+      libgd-dev \
       git && \
       docker-php-ext-install pdo_mysql && \
       docker-php-ext-install bcmath && \
-      docker-php-ext-install gd && \
       docker-php-ext-install zip && \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
 
 #Install npm
 RUN curl -sL https://deb.nodesource.com/setup_18.x | apt-get update && \

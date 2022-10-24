@@ -3,8 +3,11 @@
 namespace App\Service;
 
 use App\Models\Post;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class PostService
 {
@@ -16,8 +19,19 @@ class PostService
                 $tagIds = $data['tag_ids'];
                 unset($data['tag_ids']);
             }
-            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
-            $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
+
+            //Modify preview_image and store to database
+            $requestPreviewImagePath = $data['preview_image']->getRealPath() . '.jpg';
+            $interventionPreviewImage = Image::make($data['preview_image'])->resize(600,500)->encode('jpg');
+            $interventionPreviewImage->save($requestPreviewImagePath);
+            $data['preview_image'] = Storage::disk('public')->put('/images', new File($requestPreviewImagePath));
+
+            //Modify main_image and store to database
+            $requestMainImagePath = $data['main_image']->getRealPath() . '.jpg';
+            $interventionMainImage = Image::make($data['main_image'])->resize(1280,720)->encode('jpg');
+            $interventionMainImage->save($requestMainImagePath);
+            $data['main_image'] = Storage::disk('public')->put('/images', new File($requestMainImagePath));
+
             $data['user_id'] = auth()->user()->id;
             $post = Post::firstOrCreate($data);
 
