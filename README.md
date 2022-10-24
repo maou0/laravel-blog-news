@@ -15,4 +15,8 @@ $php artisan key:generate
 $php artisan migrate
 $php artisan db:seed
 $php artisan storage:link
+$php artisan queue:work
+6) Учетная запись дефолтного администратора:
+login = admin@admin.com
+password = password
 </pre>
